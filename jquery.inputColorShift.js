@@ -31,36 +31,33 @@ $.fn.inputColorShift = function(options) {
 
 
 		obj.keydown(function() {
-			inputLength = $(this).val().length
-			if(o.maxlength - inputLength >= 0) {
-				$(this).parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,o));
-				$(this).parent().find('.charCount').html(o.maxlength - inputLength);
-			} else {
-				// discard input stroke
-				contents = $(this).val();
-				$(this).focus().val(contents.substr(0, o.maxlength));
-			}
+			processKeystroke($(this), o,  false);
 		});
 
 		obj.keyup(function(){
-			inputLength = $(this).val().length
-			if(o.maxlength - inputLength >= 0) {
-				$(this).parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,o));
-				$(this).parent().find('.charCount').html(o.maxlength - inputLength);
-				
-				origWidth = parseInt($(this).css('width')) - o.barRightOffset;
-				textPercent = 1 - (inputLength / o.maxlength);
-				$(this).parent().find(".dumpbar").css('width',origWidth*textPercent);
-			} else {
-				// discard input stroke
-				contents = $(this).val();
-				$(this).focus().val(contents.substr(0, o.maxlength));
-			}
-		
+			processKeystroke($(this), o, true);
 		});
 	});
 };
 })(jQuery);
+
+function processKeystroke(inputEl, options, resetBar=false) {
+	inputLength = inputEl.val().length
+	if(options.maxlength - inputLength >= 0) {
+		inputEl.parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,options));
+		inputEl.parent().find('.charCount').html(options.maxlength - inputLength);
+		
+		if(resetBar) {		
+			origWidth = parseInt(inputEl.css('width')) - options.barRightOffset;
+			textPercent = 1 - (inputLength / options.maxlength);
+			inputEl.parent().find(".dumpbar").css('width',origWidth*textPercent);
+		}
+	} else {
+		// discard input stroke
+		contents = inputEl.val();
+		inputEl.focus().val(contents.substr(0, options.maxlength));
+	}
+}
 
 function calculateBarColor(txtLength, options) {
 
