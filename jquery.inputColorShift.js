@@ -2,9 +2,9 @@
 
 $.fn.inputColorShift = function(options) {
 	var defaults = {
-		length: 100,
-		startColor: '66FF00',
-		endColor: 'FF3333'
+		length: 10,
+		startColor: '#66FF00',
+		endColor: '#FF3333'
 	};
     
 	var options = $.extend(defaults, options);
