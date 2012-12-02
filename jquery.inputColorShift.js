@@ -128,5 +128,5 @@ function getColorNumber(val) {
 	hexArray["E"] = 14;
 	hexArray["F"] = 15;
 
-	return hexArray[val];
+	return hexArray[val.toUpperCase()];
 }
