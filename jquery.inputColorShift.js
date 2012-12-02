@@ -2,7 +2,7 @@
 
 $.fn.inputColorShift = function(options) {
 	var defaults = {
-		length: 100,
+		maxlength: 100,
 		startColor: '#66FF00',
 		endColor: '#FF3333',
 		barRightOffset: 20
@@ -19,7 +19,7 @@ $.fn.inputColorShift = function(options) {
 		clearEl = $(document.createElement('div')).addClass('inputColorShiftClearElement');
 		obj.after(clearEl);
 
-		num = $(document.createElement('div')).html(o.length);
+		num = $(document.createElement('div')).html(o.maxlength);
 		num.addClass('charCount');
 		obj.after(num);
 	
@@ -32,29 +32,29 @@ $.fn.inputColorShift = function(options) {
 
 		obj.keydown(function() {
 			inputLength = $(this).val().length
-			if(o.length - inputLength >= 0) {
+			if(o.maxlength - inputLength >= 0) {
 				$(this).parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,o));
-				$(this).parent().find('.charCount').html(o.length - inputLength);
+				$(this).parent().find('.charCount').html(o.maxlength - inputLength);
 			} else {
 				// discard input stroke
 				contents = $(this).val();
-				$(this).focus().val(contents.substr(0, o.length));
+				$(this).focus().val(contents.substr(0, o.maxlength));
 			}
 		});
 
 		obj.keyup(function(){
 			inputLength = $(this).val().length
-			if(o.length - inputLength >= 0) {
+			if(o.maxlength - inputLength >= 0) {
 				$(this).parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,o));
-				$(this).parent().find('.charCount').html(o.length - inputLength);
+				$(this).parent().find('.charCount').html(o.maxlength - inputLength);
 				
 				origWidth = parseInt($(this).css('width')) - o.barRightOffset;
-				textPercent = 1 - (inputLength / o.length);
+				textPercent = 1 - (inputLength / o.maxlength);
 				$(this).parent().find(".dumpbar").css('width',origWidth*textPercent);
 			} else {
 				// discard input stroke
 				contents = $(this).val();
-				$(this).focus().val(contents.substr(0, o.length));
+				$(this).focus().val(contents.substr(0, o.maxlength));
 			}
 		
 		});
@@ -71,7 +71,7 @@ function calculateBarColor(txtLength, options) {
 	var endB1HexDiff = getColorNumber(options.endColor[5]) - getColorNumber(options.startColor[5]);
 	var endB2HexDiff = getColorNumber(options.endColor[6]) - getColorNumber(options.startColor[6]);
 
-	var widthPercent = (txtLength/options.length);
+	var widthPercent = (txtLength/options.maxlength);
 	
 	var R1hex = ( getColorNumber(options.startColor[1]) + Math.floor(endR1HexDiff * widthPercent) );
 	var R2hex = ( getColorNumber(options.startColor[2]) + Math.floor(endR2HexDiff * widthPercent) );
