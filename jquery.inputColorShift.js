@@ -20,20 +20,34 @@ $.fn.inputColorShift = function(options) {
 		
 		bar = $(document.createElement('div')).css('width',obj.css('width'));
 		bar.html('&nbsp;');
-		bar.css('background-color','#66FF00');
+		bar.css('background-color',o.startColor);
 		bar.css('display','table-cell');
 		bar.addClass('dumpbar');
 		obj.after(bar);
-	
-		obj.keyup(function(){
+
+		obj.keydown(function() {
 			inputLength = $(this).val().length
-			if(o.length - inputLength > 0) {
-				$('#dumpbar1').css('background-color', '#66FF00');
-				dumpbar = $('.dumpbar').css('background-color');
-//$(this).children(":first").css('background-color','#00FF66');
-				$('.charCount').html(o.length - inputLength);
+			if(o.length - inputLength >= 0) {
+				barColor = calculateBarColor(inputLength, o);
+				$(this).parent().find(".dumpbar").css('background-color',barColor);
+				$(this).parent().find('.charCount').html(o.length - inputLength);
 			} else {
 				// discard input stroke
+				contents = $(this).val();
+				$(this).val(contents.substr(0, o.length));
+			}
+		});
+
+		obj.keyup(function(){
+			inputLength = $(this).val().length
+			if(o.length - inputLength >= 0) {
+				barColor = calculateBarColor(inputLength, o);
+				$(this).parent().find(".dumpbar").css('background-color',barColor);
+				$(this).parent().find('.charCount').html(o.length - inputLength);
+			} else {
+				// discard input stroke
+				contents = $(this).val();
+				$(this).val(contents.substr(0, o.length));
 			}
 		
 		});
