@@ -57,20 +57,26 @@ $.fn.inputColorShift = function(options) {
 
 function calculateBarColor(txtLength, options) {
 
-	var endRHexDiff = getColorNumber(options.endColor[1]) - getColorNumber(options.startColor[1]);
-	var endGHexDiff = getColorNumber(options.endColor[3]) - getColorNumber(options.startColor[3]);
-	var endBHexDiff = getColorNumber(options.endColor[5]) - getColorNumber(options.startColor[5]);
+	var endR1HexDiff = getColorNumber(options.endColor[1]) - getColorNumber(options.startColor[1]);
+	var endR2HexDiff = getColorNumber(options.endColor[2]) - getColorNumber(options.startColor[2]);
+	var endG1HexDiff = getColorNumber(options.endColor[3]) - getColorNumber(options.startColor[3]);
+	var endG2HexDiff = getColorNumber(options.endColor[4]) - getColorNumber(options.startColor[4]);
+	var endB1HexDiff = getColorNumber(options.endColor[5]) - getColorNumber(options.startColor[5]);
+	var endB2HexDiff = getColorNumber(options.endColor[6]) - getColorNumber(options.startColor[6]);
 
 	var widthPercent = (txtLength/options.length);
 	
-	var Rhex = ( getColorNumber(options.startColor[1]) + Math.floor(endRHexDiff * widthPercent) );
-	var Ghex = ( getColorNumber(options.startColor[3]) + Math.floor(endGHexDiff * widthPercent) );
-	var Bhex = ( getColorNumber(options.startColor[5]) + Math.floor(endBHexDiff * widthPercent) );
+	var R1hex = ( getColorNumber(options.startColor[1]) + Math.floor(endR1HexDiff * widthPercent) );
+	var R2hex = ( getColorNumber(options.startColor[2]) + Math.floor(endR2HexDiff * widthPercent) );
+	var G1hex = ( getColorNumber(options.startColor[3]) + Math.floor(endG1HexDiff * widthPercent) );
+	var G2hex = ( getColorNumber(options.startColor[4]) + Math.floor(endG2HexDiff * widthPercent) );
+	var B1hex = ( getColorNumber(options.startColor[5]) + Math.floor(endB1HexDiff * widthPercent) );
+	var B2hex = ( getColorNumber(options.startColor[6]) + Math.floor(endB2HexDiff * widthPercent) );
 
 	var newBGcolor = '#';
-	newBGcolor = newBGcolor + getHexColorValue(Rhex)
-	newBGcolor = newBGcolor + getHexColorValue(Ghex)
-	newBGcolor = newBGcolor + getHexColorValue(Bhex)
+	newBGcolor = newBGcolor + getHexColorValue(R1hex) + getHexColorValue(R2hex)
+	newBGcolor = newBGcolor + getHexColorValue(G1hex) + getHexColorValue(G2hex)
+	newBGcolor = newBGcolor + getHexColorValue(B1hex) + getHexColorValue(B2hex)
 	
 	return newBGcolor;
 }
