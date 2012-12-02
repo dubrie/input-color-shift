@@ -56,20 +56,22 @@ $.fn.inputColorShift = function(options) {
 })(jQuery);
 
 function calculateBarColor(txtLength, options) {
-	// determine distance between values
-	//	startColor: '#66FF00',
-	//	endColor: '#FF3333'
+
+	var endRHexDiff = getColorNumber(options.endColor[1]) - getColorNumber(options.startColor[1]);
+	var endGHexDiff = getColorNumber(options.endColor[3]) - getColorNumber(options.startColor[3]);
+	var endBHexDiff = getColorNumber(options.endColor[5]) - getColorNumber(options.startColor[5]);
 
 	var widthPercent = (txtLength/options.length);
-	var Rhex = ( getColorNumber(options.startColor[1]) + Math.floor(9  * widthPercent) );
-	var Ghex = ( getColorNumber(options.startColor[3]) - Math.floor(12 * widthPercent) );
-	var Bhex = ( getColorNumber(options.startColor[5]) + Math.floor(3  * widthPercent) );
+	
+	var Rhex = ( getColorNumber(options.startColor[1]) + Math.floor(endRHexDiff * widthPercent) );
+	var Ghex = ( getColorNumber(options.startColor[3]) + Math.floor(endGHexDiff * widthPercent) );
+	var Bhex = ( getColorNumber(options.startColor[5]) + Math.floor(endBHexDiff * widthPercent) );
 
 	var newBGcolor = '#';
 	newBGcolor = newBGcolor + getHexColorValue(Rhex)
 	newBGcolor = newBGcolor + getHexColorValue(Ghex)
 	newBGcolor = newBGcolor + getHexColorValue(Bhex)
-
+	
 	return newBGcolor;
 }
 
