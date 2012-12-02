@@ -2,7 +2,7 @@ inputColorShift
 ====
 
 **inputColorShift** is a jQuery plugin for dynamically adding a character counter and a color-changing bar to indicate your remaining input characters.  This can be applied to 
-any HTML text input field.
+any HTML text input field.  This is meant to be a collaborative project so please fork and do some magic! 
 
 Basic Example
 -------------
