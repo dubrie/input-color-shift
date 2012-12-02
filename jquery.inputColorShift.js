@@ -55,12 +55,8 @@ $.fn.inputColorShift = function(options) {
 };
 })(jQuery);
 
-function calcDumpBar(txtlen) {
-	var newWidth = 100 - (Math.ceil((txtlen/maxLength) * 100));
-	$("#dumpBarLeft").width(newWidth+"%");
+function calculateBarColor(txtLength, options) {
 
-	// now the hard part, change the color
-	var widthPercent = (newWidth / 100);
 	var hexArray = new Array();
 	hexArray["0"] = 0;
 	hexArray["1"] = 1;
@@ -79,10 +75,10 @@ function calcDumpBar(txtlen) {
 	hexArray["E"] = 14;
 	hexArray["F"] = 15;
 
-	var widthPercent = (txtlen/maxLength);
-	var Rhex = ( hexArray['6'] + Math.floor(9  * widthPercent) );
-	var Ghex = ( hexArray['F'] - Math.floor(12 * widthPercent) );
-	var Bhex = ( hexArray['0'] + Math.floor(3  * widthPercent) );
+	var widthPercent = (txtLength/options.length);
+	var Rhex = ( hexArray[options.startColor[1]] + Math.floor(9  * widthPercent) );
+	var Ghex = ( hexArray[options.startColor[3]] - Math.floor(12 * widthPercent) );
+	var Bhex = ( hexArray[options.startColor[5]] + Math.floor(3  * widthPercent) );
 
 	var newBGcolor = '#';
 	for(i in hexArray) {
@@ -101,26 +97,6 @@ function calcDumpBar(txtlen) {
 		}
 	}
 
-	$("#dumpBarLeft").css({'background-color' : newBGcolor});
-	$("#dumpBarRight").text(maxLength - txtlen);
+	return newBGcolor;
 }
 
-$("#dd_input").keydown(function(){
-		var ddi = $("#dd_input").val();
-		// validate that it is 200 or lower
-		if(ddi.length > maxLength) {
-			ddi = ddi.substring(0,(maxLength));
-			$("#dd_input").val(ddi);
-		}
-		calcDumpBar(ddi.length);
-});
-$("#dd_input").keyup(function(){
-		var ddi = $("#dd_input").val();
-		if(ddi.length > maxLength) {
-			ddi = ddi.substring(0,(maxLength));
-			$("#dd_input").val(ddi);
-		}
-		// validate that it is 200 or lower
-		$("#charsRemaining").text( (maxLength - ddi.length) );
-		calcDumpBar(ddi.length);
-});
