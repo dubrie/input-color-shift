@@ -4,7 +4,8 @@ $.fn.inputColorShift = function(options) {
 	var defaults = {
 		length: 100,
 		startColor: '#66FF00',
-		endColor: '#FF3333'
+		endColor: '#FF3333',
+		barRightOffset: 20
 	};
     
 	var options = $.extend(defaults, options);
@@ -22,7 +23,7 @@ $.fn.inputColorShift = function(options) {
 		num.addClass('charCount');
 		obj.after(num);
 	
-		barwidth = parseInt(obj.css('width')) - 20;
+		barwidth = parseInt(obj.css('width')) - o.barRightOffset;
 		bar = $(document.createElement('div')).css('width',barwidth);
 		bar.css('background-color',o.startColor);
 		bar.addClass('dumpbar');
@@ -32,26 +33,28 @@ $.fn.inputColorShift = function(options) {
 		obj.keydown(function() {
 			inputLength = $(this).val().length
 			if(o.length - inputLength >= 0) {
-				barColor = calculateBarColor(inputLength, o);
-				$(this).parent().find(".dumpbar").css('background-color',barColor);
+				$(this).parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,o));
 				$(this).parent().find('.charCount').html(o.length - inputLength);
 			} else {
 				// discard input stroke
 				contents = $(this).val();
-				$(this).val(contents.substr(0, o.length));
+				$(this).focus().val(contents.substr(0, o.length));
 			}
 		});
 
 		obj.keyup(function(){
 			inputLength = $(this).val().length
 			if(o.length - inputLength >= 0) {
-				barColor = calculateBarColor(inputLength, o);
-				$(this).parent().find(".dumpbar").css('background-color',barColor);
+				$(this).parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,o));
 				$(this).parent().find('.charCount').html(o.length - inputLength);
+				
+				origWidth = parseInt($(this).css('width')) - o.barRightOffset;
+				textPercent = 1 - (inputLength / o.length);
+				$(this).parent().find(".dumpbar").css('width',origWidth*textPercent);
 			} else {
 				// discard input stroke
 				contents = $(this).val();
-				$(this).val(contents.substr(0, o.length));
+				$(this).focus().val(contents.substr(0, o.length));
 			}
 		
 		});
