@@ -2,7 +2,7 @@
 
 $.fn.inputColorShift = function(options) {
 	var defaults = {
-		length: 10,
+		length: 100,
 		startColor: '#66FF00',
 		endColor: '#FF3333'
 	};
@@ -13,17 +13,21 @@ $.fn.inputColorShift = function(options) {
 		var o = options;
 
 		obj = $(this);
+		obj.addClass('inputColorShift');
+
+		clearEl = $(document.createElement('div')).addClass('inputColorShiftClearElement');
+		obj.after(clearEl);
+
 		num = $(document.createElement('div')).html(o.length);
-		num.css('display','table-cell');
 		num.addClass('charCount');
 		obj.after(num);
-		
-		bar = $(document.createElement('div')).css('width',obj.css('width'));
-		bar.html('&nbsp;');
+	
+		barwidth = parseInt(obj.css('width')) - 20;
+		bar = $(document.createElement('div')).css('width',barwidth);
 		bar.css('background-color',o.startColor);
-		bar.css('display','table-cell');
 		bar.addClass('dumpbar');
 		obj.after(bar);
+
 
 		obj.keydown(function() {
 			inputLength = $(this).val().length

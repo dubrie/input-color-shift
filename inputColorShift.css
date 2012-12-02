@@ -1,0 +1,23 @@
+input.inputColorShift {
+	display: block;
+}
+.charCount {
+	padding: 2px 5px;
+	display: table-cell;
+	float: left;
+	font-size: 1em;
+	color: #555;
+}
+
+.dumpbar {
+	float: left;
+	display: table-cell;
+	height: 5px !important;
+	padding: 0;
+	margin: 10px 0 5px 0;
+}
+
+.inputColorShiftClearElement {
+	display: block;
+	clear: left;
+}
