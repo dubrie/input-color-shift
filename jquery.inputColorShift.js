@@ -56,7 +56,45 @@ $.fn.inputColorShift = function(options) {
 })(jQuery);
 
 function calculateBarColor(txtLength, options) {
+	// determine distance between values
+	//	startColor: '#66FF00',
+	//	endColor: '#FF3333'
 
+	var widthPercent = (txtLength/options.length);
+	var Rhex = ( getColorNumber(options.startColor[1]) + Math.floor(9  * widthPercent) );
+	var Ghex = ( getColorNumber(options.startColor[3]) - Math.floor(12 * widthPercent) );
+	var Bhex = ( getColorNumber(options.startColor[5]) + Math.floor(3  * widthPercent) );
+
+	var newBGcolor = '#';
+	newBGcolor = newBGcolor + getHexColorValue(Rhex)
+	newBGcolor = newBGcolor + getHexColorValue(Ghex)
+	newBGcolor = newBGcolor + getHexColorValue(Bhex)
+
+	return newBGcolor;
+}
+
+function getHexColorValue(val) {
+	var hexArray = new Array();
+	hexArray[0] = 0;
+	hexArray[1] = 1;
+	hexArray[2] = 2;
+	hexArray[3] = 3;
+	hexArray[4] = 4;
+	hexArray[5] = 5;
+	hexArray[6] = 6;
+	hexArray[7] = 7;
+	hexArray[8] = 8;
+	hexArray[9] = 9;
+	hexArray[10] = 'A';
+	hexArray[11] = 'B';
+	hexArray[12] = 'C';
+	hexArray[13] = 'D';
+	hexArray[14] = 'E';
+	hexArray[15] = 'F';
+
+	return hexArray[val];
+}
+function getColorNumber(val) {
 	var hexArray = new Array();
 	hexArray["0"] = 0;
 	hexArray["1"] = 1;
@@ -75,28 +113,5 @@ function calculateBarColor(txtLength, options) {
 	hexArray["E"] = 14;
 	hexArray["F"] = 15;
 
-	var widthPercent = (txtLength/options.length);
-	var Rhex = ( hexArray[options.startColor[1]] + Math.floor(9  * widthPercent) );
-	var Ghex = ( hexArray[options.startColor[3]] - Math.floor(12 * widthPercent) );
-	var Bhex = ( hexArray[options.startColor[5]] + Math.floor(3  * widthPercent) );
-
-	var newBGcolor = '#';
-	for(i in hexArray) {
-		if(hexArray[i] == Rhex) {
-			newBGcolor = newBGcolor + i;
-		}
-	}
-	for(j in hexArray) {
-		if(hexArray[j] == Ghex) {
-			newBGcolor = newBGcolor + j;
-		}
-	}
-	for(k in hexArray) {
-		if(hexArray[k] == Bhex) {
-			newBGcolor = newBGcolor + k;
-		}
-	}
-
-	return newBGcolor;
+	return hexArray[val];
 }
-
