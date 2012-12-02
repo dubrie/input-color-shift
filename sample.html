@@ -7,19 +7,20 @@
 
 <script type="text/javascript">
 $().ready(function() {
-$('.colorShifter').inputColorShift();
+				$('.colorShifter').inputColorShift();
+				$('.colorShifter2').inputColorShift({startColor:'#aecdba', endColor:'#ff0000', length: 250}); 
 });
 </script>
 </head>
 <body>
 		<p>
 		Shifter 1
-		<input class="colorShifter" style="width: 300px;" />
+		<input class="colorShifter" style="width: 200px;" />
 		</p>
 
 		<p>
 		Shifter 2
-		<input class="colorShifter" style="width: 300px;" />
+		<input class="colorShifter2" style="width: 450px;" />
 		</p>
 
 </body>
