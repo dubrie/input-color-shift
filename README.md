@@ -8,19 +8,20 @@ Basic Example
 -------------
 
 The basic example will work on any HTML text input field of any (reasonable) size.  To start using the plugin, define a class for your input field and apply the plugin to it:
-    <html>
-    <body>
+    
+```
+<body>
     <script type="text/javascript">
         $().ready(function() {
             $('.colorShifter').inputColorShift();
         });
     </script>
-    <p>
-		<input class="colorShifter" />
-	</p>
 
-    </body>
-    </html>
+    <p>
+        <input class="colorShifter" />
+    </p>
+</body>
+```
 
 You can also provide the following optional parameters:
 
