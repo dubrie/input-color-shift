@@ -31,7 +31,7 @@ $.fn.inputColorShift = function(options) {
 
 
 		obj.keydown(function() {
-			processKeystroke($(this), o,  false);
+			processKeystroke($(this), o, false);
 		});
 
 		obj.keyup(function(){
@@ -41,7 +41,7 @@ $.fn.inputColorShift = function(options) {
 };
 })(jQuery);
 
-function processKeystroke(inputEl, options, resetBar=false) {
+function processKeystroke(inputEl, options, resetBar) {
 	inputLength = inputEl.val().length
 	if(options.maxlength - inputLength >= 0) {
 		inputEl.parent().find(".dumpbar").css('background-color',calculateBarColor(inputLength,options));
