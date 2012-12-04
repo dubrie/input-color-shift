@@ -14,8 +14,11 @@ input.inputColorShift {
 	display: table-cell;
 	height: 5px !important;
 	padding: 0;
-	margin: 10px 0 5px 0;
-}
+	margin: 9px 0 5px 0;
+	moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	-khtml-border-radius: 20px;
+	border-radius: 20px;
 
 .inputColorShiftClearElement {
 	display: block;
