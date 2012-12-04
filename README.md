@@ -34,9 +34,6 @@ The basic example will work on any HTML text input field of any (reasonable) siz
 **endColor**  
 *HexCode* [default: #FF3333] Sets the ending color, in proper hexcode format, of the progress bar under the input field.  The progress bar will automatically shift from the startColor to the endColor as you type
 
-**barRightOffset**  
-*Integer* [default: 20] Sets the offset of the right edge of the bar to allow space for the character counter
-
 
 TODO
 ----
