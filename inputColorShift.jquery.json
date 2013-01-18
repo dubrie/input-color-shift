@@ -1,0 +1,32 @@
+{
+  "name": "inputColorShift",
+  "title": "Input Color Shifter",
+  "description": "inputColorShift is a jQuery plugin for dynamically adding a character counter and a color-changing bar to indicate your remaining input characters. This can be applied to any HTML text input field.",
+  "keywords": [
+    "html",
+    "input",
+    "color",
+    "changing",
+    "character",
+    "counter",
+    "text input"
+  ],
+  "version": "0.1.0",
+  "author": {
+    "name": "Bill Johnson",
+	"email": "dubrie@gmail.com"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/jquery/jquery-color/blob/2.1.2/MIT-LICENSE.txt"
+    }
+  ],
+  "bugs": "https://github.com/dubrie/input-color-shift/issues",
+  "homepage": "https://github.com/dubrie/input-color-shift",
+  "docs": "https://github.com/dubrie/input-color-shift",
+  "download": "https://raw.github.com/dubrie/input-color-shift/master/jquery.inputColorShift.js",  
+  "dependencies": {
+    "jquery": ">=1.4"
+  }
+}
